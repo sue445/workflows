@@ -2,7 +2,7 @@ on:
   workflow_call:
     inputs:
       assignees:
-        description: repo name (e.g. user/repo)
+        description: PR assignees
         type: string
         required: true
 
