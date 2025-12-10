@@ -1,2 +1,22 @@
 # workflows
 [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) for GitHub Actions
+
+## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
+```yml
+name: rbs-collection-updater
+
+on:
+  schedule:
+    - cron: "0 0 1 * *" # Run monthly
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: sue445/workflows/.github/workflows/rbs-collection-updater.yml@main
+    with:
+      assignees: sue445
+    secrets:
+      app-id: ${{ secrets.GH_APP_ID }}
+      private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
