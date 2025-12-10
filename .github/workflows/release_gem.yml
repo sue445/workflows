@@ -39,10 +39,6 @@ jobs:
       name: rubygems.org
       url: https://rubygems.org/gems/${{ inputs.gem_name }}}
 
-    permissions:
-      contents: write
-      id-token: write
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
