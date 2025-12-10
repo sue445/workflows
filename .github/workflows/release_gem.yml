@@ -23,8 +23,9 @@ on:
         required: true
 
     outputs:
-      description: gem version tag (e.g. v1.2.3)
-      tag_name: ${{ steps.create_release.outputs.tag_name }}
+      tag_name:
+        description: gem version tag (e.g. v1.2.3)
+        value: ${{ steps.create_release.outputs.tag_name }}
 
 jobs:
   release:
