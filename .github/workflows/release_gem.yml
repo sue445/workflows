@@ -25,7 +25,7 @@ on:
     outputs:
       tag_name:
         description: gem version tag (e.g. v1.2.3)
-        value: ${{ steps.create_release.outputs.tag_name }}
+        value: ${{ jobs.release.outputs.tag_name }}
 
 jobs:
   release:
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tag_name: ${{ steps.set_output.outputs.tag_name }}
+      tag_name: ${{ steps.create_release.outputs.tag_name }}
 
     environment:
       name: rubygems.org
