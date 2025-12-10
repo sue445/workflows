@@ -1,3 +1,5 @@
+# Run `rbs collection update` and create Pull Request for rbs_collection.lock.yaml
+
 on:
   workflow_call:
     inputs:
