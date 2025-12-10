@@ -18,7 +18,7 @@ on:
         default: true
 
     secrets:
-      token:
+      gh_token:
         description: github token
         required: true
 
@@ -75,4 +75,4 @@ jobs:
 
           gh release create "${tag_name}" --verify-tag --generate-notes $options
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ secrets.gh_token }}
