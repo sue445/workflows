@@ -45,6 +45,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
+      # Now, development is only supported for bundler, composer, mix, maven, npm, pip
+      # c.f. https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#dependency-type-allow
       - name: Approve & enable auto-merge for Dependabot PR (minor version up && development dependencies)
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == 'direct:development'
         run: |
