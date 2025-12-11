@@ -2,6 +2,12 @@
 [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) for GitHub Actions
 
 ## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
+> [!IMPORTANT]
+> Requires followings
+> 
+> * [Allow auto-merge](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository#managing-auto-merge)
+> * Enable [Require status checks before merging](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging)
+
 e.g.
 
 ```yml
