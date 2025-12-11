@@ -34,7 +34,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@08eff52bf64351f401fb50d4972fa95b9f2c2d1b # v2.4.0
         with:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Approve & enable auto-merge for Dependabot PR (patch version up)
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
@@ -43,7 +43,7 @@ jobs:
           gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Approve & enable auto-merge for Dependabot PR (minor version up && development dependencies)
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == 'direct:development'
@@ -52,7 +52,7 @@ jobs:
           gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Approve & enable auto-merge for Dependabot PR (minor version up && go_modules)
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'go_modules'
@@ -61,7 +61,7 @@ jobs:
           gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Slack Notification (not success)
         uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
