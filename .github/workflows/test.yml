@@ -28,27 +28,9 @@ jobs:
           status: ${{ job.status }}
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
-  pinact:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Run pinact
-        uses: suzuki-shunsuke/pinact-action@49cbd6acd0dbab6a6be2585d1dbdaa43b4410133 # v1.0.0
-
-      - name: Slack Notification (not success)
-        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
-        if: "! success()"
-        continue-on-error: true
-        with:
-          status: ${{ job.status }}
-          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
-
   notify:
     needs:
       - actionlint
-      - pinact
 
     runs-on: ubuntu-latest
 
