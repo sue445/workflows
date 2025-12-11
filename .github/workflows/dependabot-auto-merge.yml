@@ -15,7 +15,7 @@ on:
         required: false
 
 jobs:
-  dependabot-automerge:
+  dependabot-auto-merge:
     runs-on: ubuntu-latest
 
     if: ${{ github.actor == 'dependabot[bot]' }}
