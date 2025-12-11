@@ -34,7 +34,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@08eff52bf64351f401fb50d4972fa95b9f2c2d1b # v2.4.0
         with:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token.outputs.token }}
 
       - name: Approve & enable auto-merge for Dependabot PR (patch version up)
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
