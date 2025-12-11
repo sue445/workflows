@@ -1,7 +1,27 @@
 # workflows
 [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) for GitHub Actions
 
+## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
+e.g.
+
+```yml
+name: dependabot-auto-merge
+
+on:
+  pull_request_target:
+
+jobs:
+  auto-merge:
+    uses: sue445/workflows/.github/workflows/dependabot-auto-merge.yml@main
+    secrets:
+      app-id: ${{ secrets.GH_APP_ID }}
+      private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
+
 ## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
+e.g.
+
 ```yml
 name: rbs-collection-updater
 
