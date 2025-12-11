@@ -36,11 +36,28 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
-      - name: Approve & enable auto-merge for Dependabot PR
-        if: |
-          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
-          (steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == 'direct:development') ||
-          (steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == '')
+      - name: Approve & enable auto-merge for Dependabot PR (patch version up)
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Approve & enable auto-merge for Dependabot PR (minor version up && development dependencies)
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == 'direct:development'
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
+      - name: Approve & enable auto-merge for Dependabot PR (minor version up && go_modules)
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'go_modules'
         run: |
           gh pr review --approve "$PR_URL"
           gh pr merge --auto --merge "$PR_URL"
