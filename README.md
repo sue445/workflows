@@ -26,7 +26,7 @@ jobs:
       # TODO: Set secrets to Dependabot secrets
       app-id: ${{ secrets.GH_APP_ID }}
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+      # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
 ## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
@@ -55,5 +55,5 @@ jobs:
     secrets:
       app-id: ${{ secrets.GH_APP_ID }}
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+      # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
