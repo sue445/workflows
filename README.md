@@ -49,9 +49,9 @@ on:
 jobs:
   build:
     uses: sue445/workflows/.github/workflows/rbs-collection-updater.yml@main
-    with:
-      assignees: sue445
-      # auto-merge: true
+    # with:
+    #   assignees: sue445
+    #   auto-merge: true
     secrets:
       app-id: ${{ secrets.GH_APP_ID }}
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
