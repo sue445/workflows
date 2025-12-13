@@ -11,6 +11,7 @@ on:
         description: Whether set auto-marge to created PR
         type: boolean
         required: false
+        default: false
 
     secrets:
       app-id:
