@@ -58,10 +58,9 @@ jobs:
           add-paths: |
             rbs_collection.lock.yaml
 
-      - name: Approve & enable auto-merge
+      - name: Enable auto-merge
         if: inputs.auto-merge && steps.cpr.outputs.pull-request-url
         run: |
-          gh pr review --approve "$PR_URL"
           gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
