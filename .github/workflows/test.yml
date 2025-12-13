@@ -19,6 +19,9 @@ jobs:
 
       - name: Run actionlint
         uses: reviewdog/action-actionlint@83e4ed25b168066ad8f62f5afbb29ebd8641d982 # v1.69.1
+        with:
+          fail_level: warning
+          level: warning
 
       - name: Slack Notification (not success)
         uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
