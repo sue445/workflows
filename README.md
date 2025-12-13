@@ -30,6 +30,12 @@ jobs:
 ```
 
 ## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
+> [!IMPORTANT]
+> Requires followings when enabling `auto-merge`
+>
+> * [Allow auto-merge](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository#managing-auto-merge)
+> * Enable [Require status checks before merging](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging) and add checks to "Status checks that are required"
+
 e.g.
 
 ```yml
@@ -49,4 +55,5 @@ jobs:
       app-id: ${{ secrets.GH_APP_ID }}
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+      # auto-merge: true
 ```
