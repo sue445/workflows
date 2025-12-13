@@ -7,6 +7,10 @@ on:
         description: PR assignees
         type: string
         required: false
+      auto-merge:
+        description: Whether set auto-marge to created PR
+        type: boolean
+        required: false
 
     secrets:
       app-id:
@@ -40,6 +44,7 @@ jobs:
           private-key: ${{ secrets.private-key }}
 
       - uses: peter-evans/create-pull-request@84ae59a2cdc2258d6fa0732dd66352dddae2a412 # v7.0.9
+        id: cpr
         with:
           token: ${{ steps.app-token.outputs.token }}
           committer: GitHub <noreply@github.com>
@@ -51,6 +56,15 @@ jobs:
           assignees: ${{ inputs.assignees }}
           add-paths: |
             rbs_collection.lock.yaml
+
+      - name: Approve & enable auto-merge
+        if: inputs.auto-merge && steps.cpr.outputs.pull-request-url
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ steps.cpr.outputs.pull-request-url }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Slack Notification
         uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
