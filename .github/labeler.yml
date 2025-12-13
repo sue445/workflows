@@ -1,0 +1,7 @@
+dependabot-auto-merge:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/dependabot-auto-merge.yml"
+
+rbs-collection-updater:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/rbs-collection-updater.yml"
