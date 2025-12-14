@@ -1,6 +1,8 @@
 # Auto-merge Dependabot PR
 # c.f. https://blog.smartbank.co.jp/entry/2023/02/16/dependabot-auto-merge-with-github-app
 
+name: Auto-merge Dependabot PR
+
 on:
   workflow_call:
     secrets:
