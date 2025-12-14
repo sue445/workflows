@@ -1,5 +1,3 @@
-name: Deploy yard to Pages
-
 on:
   workflow_call:
     inputs:
@@ -21,6 +19,8 @@ on:
 
 jobs:
   pages-yard:
+    name: Deploy yard to Pages
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
