@@ -8,6 +8,11 @@ on:
         type: string
         required: false
         default: ""
+      bundle-without:
+        description: Passed to `BUNDLE_WITHOUT` env
+        type: string
+        required: false
+        default: ""
 
     secrets:
       slack-webhook:
@@ -27,6 +32,9 @@ jobs:
       cancel-in-progress: true
 
     runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_WITHOUT: ${{ inputs.bundle-without }}
 
     steps:
       - name: Checkout
