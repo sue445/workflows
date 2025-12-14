@@ -1,7 +1,11 @@
 # workflows
 [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) for GitHub Actions
 
+[![test](https://github.com/sue445/workflows/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/workflows/actions/workflows/test.yml)
+
 ## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
+Auto-merge Dependabot PR
+
 > [!IMPORTANT]
 > Requires followings
 > 
@@ -30,6 +34,8 @@ jobs:
 ```
 
 ## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
+Run `rbs collection update` and create Pull Request for `rbs_collection.lock.yaml`
+
 > [!IMPORTANT]
 > Requires followings when enabling `auto-merge`
 >
