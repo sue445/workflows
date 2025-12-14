@@ -54,7 +54,9 @@ jobs:
   deploy:
     uses: sue445/workflows/.github/workflows/pages-yard.yml@main
     # with:
-    #   skip-checkout: false
+    #   before-command: |
+    #     sudo apt-get update
+    #     sudo apt-get install -y libgda-5.0
     # secrets:
     #   slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
