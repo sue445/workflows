@@ -1,7 +1,5 @@
 # Run `rbs collection update` and create Pull Request for rbs_collection.lock.yaml
 
-name: Update rbs_collection.lock.yaml
-
 on:
   workflow_call:
     inputs:
@@ -28,6 +26,8 @@ on:
 
 jobs:
   rbs-collection-updater:
+    name: Update rbs_collection.lock.yaml
+
     runs-on: ubuntu-latest
 
     steps:
