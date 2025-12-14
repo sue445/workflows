@@ -36,6 +36,8 @@ jobs:
 ## [pages-yard.yml](.github/workflows/pages-yard.yml)
 Deploy yard to Pages
 
+e.g.
+
 ```yml
 name: pages-yard
 
