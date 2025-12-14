@@ -33,6 +33,32 @@ jobs:
       # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
+## [pages-yard.yml](.github/workflows/pages-yard.yml)
+Deploy yard to Pages
+
+```yml
+name: pages-yard
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    uses: sue445/workflows/.github/workflows/pages-yard.yml@main
+    # with:
+    #   skip-checkout: false
+    # secrets:
+    #   slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
+
 ## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
 Run `rbs collection update` and create Pull Request for `rbs_collection.lock.yaml`
 
