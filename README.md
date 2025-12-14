@@ -54,6 +54,7 @@ jobs:
   deploy:
     uses: sue445/workflows/.github/workflows/pages-yard.yml@main
     # with:
+    #   bundle-without: production
     #   before-command: |
     #     sudo apt-get update
     #     sudo apt-get install -y libgda-5.0
