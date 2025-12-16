@@ -33,17 +33,16 @@ jobs:
           status: ${{ job.status }}
           webhook-url: ${{ secrets.SLACK_WEBHOOK }}
 
-  notify:
+  all-pass:
+    if: always()
+
     needs:
       - actionlint
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
-      - name: Slack Notification (success)
-        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
-        if: always()
-        continue-on-error: true
+      - name: check dependent jobs
+        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
         with:
-          status: ${{ job.status }}
-          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          jobs: ${{ toJSON(needs) }}
