@@ -18,7 +18,7 @@ jobs:
   dependabot-auto-merge:
     name: Auto-merge Dependabot PR
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     if: github.actor == 'dependabot[bot]'
     timeout-minutes: 13
