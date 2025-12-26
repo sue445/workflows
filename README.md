@@ -56,6 +56,7 @@ jobs:
   deploy:
     uses: sue445/workflows/.github/workflows/pages-yard.yml@main
     # with:
+    #   ruby-version: ruby
     #   bundle-without: production
     #   before-command: |
     #     sudo apt-get update
@@ -89,6 +90,7 @@ jobs:
     # with:
     #   assignees: sue445
     #   auto-merge: true
+    #   ruby-version: ruby
     secrets:
       app-id: ${{ secrets.GH_APP_ID }}
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
