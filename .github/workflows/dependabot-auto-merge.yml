@@ -42,7 +42,12 @@ jobs:
       - name: Add security label and GHSA-ID to PR
         if: steps.metadata.outputs.ghsa-id != ''
         run: |
-          gh pr edit "$PR_URL" --title "[${GHSA_ID}] ${PR_TITLE}" --add-label "security"
+          NEW_TITLE="${PR_TITLE}"
+          # Only prepend GHSA-ID if the title does not already start with a GHSA prefix
+          if [[ ! "${PR_TITLE}" =~ ^\[GHSA-[0-9A-Za-z-]+\] ]]; then
+            NEW_TITLE="[${GHSA_ID}] ${PR_TITLE}"
+          fi
+          gh pr edit "$PR_URL" --title "${NEW_TITLE}" --add-label "security"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_TITLE: ${{ github.event.pull_request.title }}
