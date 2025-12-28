@@ -37,6 +37,21 @@ jobs:
         uses: dependabot/fetch-metadata@08eff52bf64351f401fb50d4972fa95b9f2c2d1b # v2.4.0
         with:
           github-token: ${{ steps.app-token.outputs.token }}
+          alert-lookup: true
+
+      - name: Add security label and GHSA-ID to PR
+        if: steps.metadata.outputs.ghsa-id != ''
+        run: |
+          # Only prepend GHSA-ID if the title does not already start with a GHSA prefix
+          if [[ ! "${PR_TITLE}" =~ ^\[GHSA-[0-9A-Za-z-]+\] ]]; then
+            PR_TITLE="[${GHSA_ID}] ${PR_TITLE}"
+          fi
+          gh pr edit "$PR_URL" --title "${PR_TITLE}" --add-label "security"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GHSA_ID: ${{ steps.metadata.outputs.ghsa-id }}
 
       - name: Approve & enable auto-merge for Dependabot PR (patch version up)
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
