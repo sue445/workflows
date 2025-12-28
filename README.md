@@ -36,6 +36,7 @@ jobs:
 Permissions required for GitHub apps
 
 * Pull requests : Read and write
+* Dependabot alerts : Read-only
 
 ## [pages-yard.yml](.github/workflows/pages-yard.yml)
 Deploy yard to Pages
