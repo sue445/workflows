@@ -33,6 +33,10 @@ jobs:
       # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
+Permissions required for GitHub apps
+
+* Pull requests : Read and write
+
 ## [pages-yard.yml](.github/workflows/pages-yard.yml)
 Deploy yard to Pages
 
@@ -96,3 +100,8 @@ jobs:
       private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
+
+Permissions required for GitHub apps
+
+* Contents : Read and write
+* Pull requests : Read and write
