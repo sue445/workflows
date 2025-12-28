@@ -35,7 +35,7 @@ jobs:
       # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-Permissions required for GitHub apps
+Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
 
 * Pull requests : Read and write
 * Dependabot alerts : Read-only
@@ -104,7 +104,7 @@ jobs:
       # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-Permissions required for GitHub apps
+Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
 
 * Contents : Read and write
 * Pull requests : Read and write
