@@ -5,8 +5,8 @@
 
 ## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
 * Auto-merge Dependabot PR
-* Add `security` label to PR
-* Add GHSA-ID to PR title
+* Add `security` label to PR when security update PR
+* Add GHSA-ID to PR title when security update PR
 
 > [!IMPORTANT]
 > Requires followings
