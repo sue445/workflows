@@ -67,6 +67,16 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
+      # Updates to ruby/setup-ruby often include the addition of new Ruby versions by bot
+      - name: Approve & enable auto-merge for Dependabot PR (minor version up && github_actions && ruby/setup-ruby)
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'github_actions' && contains(steps.metadata.outputs.dependency-names, 'ruby/setup-ruby')
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
       - name: Slack Notification (not success)
         uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
         if: "! success()"
