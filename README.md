@@ -4,7 +4,9 @@
 [![test](https://github.com/sue445/workflows/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/workflows/actions/workflows/test.yml)
 
 ## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
-Auto-merge Dependabot PR
+* Auto-merge Dependabot PR
+* Add `security` label to PR
+* Add GHSA-ID to PR title
 
 > [!IMPORTANT]
 > Requires followings
