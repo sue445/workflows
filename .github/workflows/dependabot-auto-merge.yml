@@ -44,7 +44,8 @@ jobs:
         run: |
           # Only prepend GHSA-ID or CVE-ID if the title does not already start with a GHSA or CVE prefix
           if [[ ! "${PR_TITLE}" =~ ^\[(GHSA|CVE)-[0-9A-Za-z-]+\] ]]; then
-            CVE_ID=$(gh api "advisories/$GHSA_ID" --jq '.identifiers[] | select(.type=="CVE") | .value' 2>/dev/null || echo "")
+            # When multiple CVE identifiers exist for a GHSA advisory, we intentionally use a single CVE ID for the PR title prefix.
+            CVE_ID=$(gh api "/advisories/$GHSA_ID" --jq '.identifiers[] | select(.type=="CVE") | .value' 2>/dev/null || echo "")
             if [ -n "${CVE_ID}" ]; then
               PR_TITLE="[${CVE_ID}] ${PR_TITLE}"
             else
