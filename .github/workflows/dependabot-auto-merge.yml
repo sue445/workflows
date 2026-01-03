@@ -31,6 +31,7 @@ jobs:
         with:
           app-id: ${{ secrets.app-id }}
           private-key: ${{ secrets.private-key }}
+          permission-contents: write
           permission-pull-requests: write
           permission-vulnerability-alerts: read
 

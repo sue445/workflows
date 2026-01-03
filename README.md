@@ -37,6 +37,7 @@ jobs:
 
 Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
 
+* Contents : Read and write
 * Pull requests : Read and write
 * Dependabot alerts : Read-only
 
