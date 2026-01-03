@@ -31,6 +31,8 @@ jobs:
         with:
           app-id: ${{ secrets.app-id }}
           private-key: ${{ secrets.private-key }}
+          permission-pull-requests: write
+          permission-vulnerability-alerts: read
 
       - name: Dependabot metadata
         id: metadata
