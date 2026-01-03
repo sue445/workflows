@@ -2,6 +2,10 @@ dependabot-auto-merge:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/dependabot-auto-merge.yml"
 
+major-tag-updater:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/major-tag-updater.yml"
+
 pages-yard:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/pages-yard.yml"

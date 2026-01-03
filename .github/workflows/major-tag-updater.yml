@@ -1,0 +1,44 @@
+on:
+  workflow_call:
+    secrets:
+      slack-webhook:
+        description: Slack incoming webhook url
+        required: false
+
+jobs:
+  update-major-release-tag:
+    name: Update Major Release Tag
+
+    runs-on: ubuntu-slim
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Extract Major Version and Update Tag
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          MAJOR_VERSION="$(echo "$VERSION" | cut -d. -f1)"
+
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "MAJOR_VERSION=$MAJOR_VERSION" >> "$GITHUB_ENV"
+
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git tag -d "$MAJOR_VERSION" || true
+          git push origin ":refs/tags/$MAJOR_VERSION" || true
+
+          git tag "$MAJOR_VERSION" "$VERSION"
+          git push origin "$MAJOR_VERSION"
+
+      - name: Log Tags
+        run: |
+          echo "Updated tag $MAJOR_VERSION to point to $VERSION"
+
+      - name: Slack Notification (not success)
+        uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0
+        if: "! success()"
+        continue-on-error: true
+        with:
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.slack-webhook }}

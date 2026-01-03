@@ -40,6 +40,27 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Pull requests : Read and write
 * Dependabot alerts : Read-only
 
+## [major-tag-updater.yml](.github/workflows/major-tag-updater.yml)
+Update Major Release Tag
+
+```yml
+name: Update Major Release Tag
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  major-tag-updater:
+    uses: sue445/workflows/.github/workflows/major-tag-updater.yml@main
+    # secrets:
+    #   slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
+
 ## [pages-yard.yml](.github/workflows/pages-yard.yml)
 Deploy yard to Pages
 
