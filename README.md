@@ -44,6 +44,8 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 ## [major-tag-updater.yml](.github/workflows/major-tag-updater.yml)
 Update Major Release Tag
 
+e.g. When the `v1.2.3` tag is pushed, the `v1` tag is updated
+
 ```yml
 name: Update Major Release Tag
 
