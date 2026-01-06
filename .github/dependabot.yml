@@ -18,3 +18,4 @@ updates:
   ###########################################################
       exclude:
         - ruby/setup-ruby
+        - sue445/terraform-plan-changes-count
