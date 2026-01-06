@@ -136,6 +136,12 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 ## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
 Auto-merge Dependabot PR when there are no plan changes
 
+> [!IMPORTANT]
+> Requires followings when enabling `auto-merge`
+>
+> * [Allow auto-merge](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository#managing-auto-merge)
+> * Enable [Require status checks before merging](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging) and add checks to "Status checks that are required"
+
 e.g.
 
 ```yaml
