@@ -1,0 +1,60 @@
+name: terraform-auto-merge
+
+description: Auto-merge Dependabot PR when there are no plan changes
+
+inputs:
+  plan-path:
+    description: |
+      Path to plan report file.
+      Pass same path as the one provided in `terraform plan -out`.
+    required: false
+    default: tfplan
+
+  app-id:
+    description: GitHub App ID
+    required: true
+
+  private-key:
+    description: GitHub App private key
+    required: true
+
+  bot-name:
+    description: bot name that allows auto-merge other than dependabot
+    required: false
+    default: ""
+
+runs:
+  using: composite
+
+  steps:
+    - uses: sue445/terraform-plan-changes-count@8d8b2c3c7c3ce3c022a8f4bf033c345d856b2820 # v0.1.0
+      id: plan-changes
+      with:
+        plan-path: ${{ inputs.plan-path }}
+
+    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+      id: app-token
+      with:
+        app-id: ${{ inputs.app-id }}
+        private-key: ${{ inputs.private-key }}
+        permission-contents: write
+        permission-pull-requests: write
+        permission-workflows: write
+
+    - name: Auto-merge Dependabot PR when there are no plan changes
+      run: |
+        gh pr merge --auto --merge "$PR_URL"
+      if: github.event_name == 'pull_request' && steps.plan-changes.outputs.total == '0' && github.actor == 'dependabot[bot]'
+      shell: bash
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+    - name: Auto-merge bot PR when there are no plan changes
+      run: |
+        gh pr merge --auto --merge "$PR_URL"
+      if: github.event_name == 'pull_request' && steps.plan-changes.outputs.total == '0' && inputs.bot-name != '' && github.actor == format('{0}[bot]', inputs.bot-name)
+      shell: bash
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}

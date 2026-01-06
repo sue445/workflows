@@ -132,3 +132,27 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 
 * Contents : Read and write
 * Pull requests : Read and write
+
+## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
+Auto-merge Dependabot PR when there are no plan changes
+
+e.g.
+
+```yaml
+- name: terraform plan
+  run: terraform plan -input=false -out=tfplan
+
+- uses: sue445/workflows/.github/actions/terraform-auto-merge@main
+  with:
+    # TODO: Set secrets to Dependabot secrets
+    app-id: ${{ secrets.GH_APP_ID }}
+    private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+    # plan-path: tfplan
+    # bot-name: ""
+```
+
+Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
+
+* Contents : Read and write
+* Pull requests : Read and write
+* Workflows: Read and Write
