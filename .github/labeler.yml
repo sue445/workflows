@@ -17,3 +17,7 @@ rbs-collection-updater:
 terraform-auto-merge:
   - changed-files:
       - any-glob-to-any-file: ".github/actions/terraform-auto-merge/**"
+
+terraform-version-updater:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/terraform-version-updater.yml"
