@@ -162,3 +162,34 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Contents : Read and write
 * Pull requests : Read and write
 * Workflows: Read and Write
+
+## [terraform-version-updater.yml](.github/workflows/terraform-version-updater.yml)
+Upgrade Terraform to latest version
+
+e.g.
+
+```yaml
+name: Upgrade Terraform to latest version
+
+on:
+  schedule:
+    - cron: "0 0 1 * *" # Run monthly
+  workflow_dispatch: # Run manually
+
+jobs:
+  terraform-version-updater:
+    uses: sue445/workflows/.github/workflows/terraform-version-updater.yml@main
+    # with:
+    #   assignees: sue445
+    secrets:
+      app-id: ${{ secrets.GH_APP_ID }}
+      private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
+
+Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
+
+* Contents : Read and write
+* Pull requests : Read and write
+
+See also. https://github.com/sue445/terraform-version-updater

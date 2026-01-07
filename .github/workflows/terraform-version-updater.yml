@@ -1,0 +1,85 @@
+on:
+  workflow_call:
+    inputs:
+      assignees:
+        description: PR assignees
+        type: string
+        required: false
+
+    secrets:
+      app-id:
+        description: GitHub App ID
+        required: true
+      private-key:
+        description: GitHub App private key
+        required: true
+      slack-webhook:
+        description: Slack incoming webhook url
+        required: false
+
+jobs:
+  terraform-version-updater:
+    name: Upgrade Terraform to latest version
+
+    runs-on: ubuntu-slim
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Get latest release info
+        id: get_latest_release
+        uses: octokit/request-action@dad4362715b7fb2ddedf9772c8670824af564f0d # v2.4.0
+        with:
+          route: GET /repos/sue445/terraform-version-updater/releases/latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add LATEST_VERSION to GITHUB_ENV
+        run: echo "LATEST_VERSION=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_ENV
+
+      - name: Download and install terraform-version-updater
+        run: |
+          wget https://github.com/sue445/terraform-version-updater/releases/download/${LATEST_VERSION}/terraform-version-updater_Linux_x86_64.tar.gz
+          tar -zxvf terraform-version-updater_Linux_x86_64.tar.gz
+          mv terraform-version-updater /usr/local/bin
+        working-directory: /tmp
+
+      - name: Add BEFORE_TERRAFORM_VERSION to GITHUB_ENV
+        run: echo "BEFORE_TERRAFORM_VERSION=$(cat .terraform-version)" >> $GITHUB_ENV
+
+      - name: Run terraform-version-updater
+        run: terraform-version-updater
+
+      - name: Add AFTER_TERRAFORM_VERSION to GITHUB_ENV
+        run: echo "AFTER_TERRAFORM_VERSION=$(cat .terraform-version)" >> $GITHUB_ENV
+
+      - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.app-id }}
+          private-key: ${{ secrets.private-key }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Create Terraform version up PullRequest
+        uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # v8.0.0
+        with:
+          token:          ${{ steps.app-token.outputs.token }}
+          title:          "Bump Terraform from ${{ env.BEFORE_TERRAFORM_VERSION }} to ${{ env.AFTER_TERRAFORM_VERSION }}"
+          commit-message: "Bump Terraform from ${{ env.BEFORE_TERRAFORM_VERSION }} to ${{ env.AFTER_TERRAFORM_VERSION }}"
+          labels:         "terraform-version-updater"
+          branch:         "terraform-version-updater/terraform_${{ env.AFTER_TERRAFORM_VERSION }}"
+          assignees:      ${{ inputs.assignees }}
+          body: |
+            Bumps [Terraform](https://github.com/hashicorp/terraform) from ${{ env.BEFORE_TERRAFORM_VERSION }} to ${{ env.AFTER_TERRAFORM_VERSION }}
+
+            * Release: https://github.com/hashicorp/terraform/releases/tag/v${{ env.AFTER_TERRAFORM_VERSION }}
+            * See full diff in [compare view](https://github.com/hashicorp/terraform/compare/v${{ env.BEFORE_TERRAFORM_VERSION }}...v${{ env.AFTER_TERRAFORM_VERSION }})
+
+      - name: Slack Notification (not success)
+        uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
+        if: "! success()"
+        continue-on-error: true
+        with:
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.slack-webhook }}
