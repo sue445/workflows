@@ -1,4 +1,4 @@
-# workflows
+# sue445/workflows
 [Reusable workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows) for GitHub Actions
 
 [![test](https://github.com/sue445/workflows/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/workflows/actions/workflows/test.yml)
