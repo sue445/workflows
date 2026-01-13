@@ -4,9 +4,7 @@
 [![test](https://github.com/sue445/workflows/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/workflows/actions/workflows/test.yml)
 
 ## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
-* Auto-merge Dependabot PR
-* Add `security` label to PR when security update PR
-* Add GHSA-ID (or CVE-ID if possible) to PR title when security update PR
+Auto-merge Dependabot PR
 
 > [!IMPORTANT]
 > Requires followings
@@ -28,6 +26,36 @@ on:
 jobs:
   auto-merge:
     uses: sue445/workflows/.github/workflows/dependabot-auto-merge.yml@main
+    secrets:
+      # TODO: Set secrets to Dependabot secrets
+      app-id: ${{ secrets.GH_APP_ID }}
+      private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      # slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
+```
+
+Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
+
+* Contents : Read and write
+* Pull requests : Read and write
+
+## [dependabot-security-alert.yml](.github/workflows/dependabot-security-alert.yml)
+* Add `security` label to PR when security update PR
+* Add GHSA-ID (or CVE-ID if possible) to PR title when security update PR
+
+e.g.
+
+```yml
+name: dependabot-security-alert
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize # PR branch is rebased
+
+jobs:
+  auto-merge:
+    uses: sue445/workflows/.github/workflows/dependabot-security-alert.yml@main
     secrets:
       # TODO: Set secrets to Dependabot secrets
       app-id: ${{ secrets.GH_APP_ID }}

@@ -2,6 +2,10 @@ dependabot-auto-merge:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/dependabot-auto-merge.yml"
 
+dependabot-security-alert:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/dependabot-security-alert.yml"
+
 major-tag-updater:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/major-tag-updater.yml"

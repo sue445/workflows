@@ -33,34 +33,12 @@ jobs:
           private-key: ${{ secrets.private-key }}
           permission-contents: write
           permission-pull-requests: write
-          permission-vulnerability-alerts: read
 
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2.5.0
         with:
           github-token: ${{ steps.app-token.outputs.token }}
-          alert-lookup: true
-
-      - name: Add security label and GHSA-ID (or CVE-ID if possible) to PR
-        if: steps.metadata.outputs.ghsa-id != ''
-        run: |
-          # Only prepend GHSA-ID or CVE-ID if the title does not already start with a GHSA or CVE prefix
-          if [[ ! "${PR_TITLE}" =~ ^\[(GHSA|CVE)-[0-9A-Za-z-]+\] ]]; then
-            # When multiple CVE identifiers exist for a GHSA advisory, we intentionally use a single CVE ID for the PR title prefix.
-            CVE_ID=$(gh api "/advisories/$GHSA_ID" --jq '.identifiers[] | select(.type=="CVE") | .value' 2>/dev/null || echo "")
-            if [ -n "${CVE_ID}" ]; then
-              PR_TITLE="[${CVE_ID}] ${PR_TITLE}"
-            else
-              PR_TITLE="[${GHSA_ID}] ${PR_TITLE}"
-            fi
-          fi
-          gh pr edit "$PR_URL" --title "${PR_TITLE}" --add-label "security"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          GHSA_ID: ${{ steps.metadata.outputs.ghsa-id }}
 
       - name: Approve & enable auto-merge for Dependabot PR (patch version up)
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
