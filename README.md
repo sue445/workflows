@@ -3,7 +3,7 @@
 
 [![test](https://github.com/sue445/workflows/actions/workflows/test.yml/badge.svg)](https://github.com/sue445/workflows/actions/workflows/test.yml)
 
-## [dependabot-auto-merge.yml](.github/workflows/dependabot-auto-merge.yml)
+## [dependabot-auto-merge](.github/workflows/dependabot-auto-merge.yml)
 Auto-merge Dependabot PR
 
 > [!IMPORTANT]
@@ -38,7 +38,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Contents : Read and write
 * Pull requests : Read and write
 
-## [dependabot-security-alert.yml](.github/workflows/dependabot-security-alert.yml)
+## [dependabot-security-alert](.github/workflows/dependabot-security-alert.yml)
 * Add `security` label to PR when security update PR
 * Add GHSA-ID (or CVE-ID if possible) to PR title when security update PR
 
@@ -69,7 +69,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Pull requests : Read and write
 * Dependabot alerts : Read-only
 
-## [major-tag-updater.yml](.github/workflows/major-tag-updater.yml)
+## [major-tag-updater](.github/workflows/major-tag-updater.yml)
 Update Major Release Tag
 
 e.g. When the `v1.2.3` tag is pushed, the `v1` tag is updated
@@ -92,7 +92,7 @@ jobs:
     #   slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-## [pages-yard.yml](.github/workflows/pages-yard.yml)
+## [pages-yard](.github/workflows/pages-yard.yml)
 Deploy yard to Pages
 
 e.g.
@@ -124,7 +124,7 @@ jobs:
     #   slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
 ```
 
-## [rbs-collection-updater.yml](.github/workflows/rbs-collection-updater.yml)
+## [rbs-collection-updater](.github/workflows/rbs-collection-updater.yml)
 Run `rbs collection update` and create Pull Request for `rbs_collection.lock.yaml`
 
 > [!IMPORTANT]
@@ -191,7 +191,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Pull requests : Read and write
 * Workflows: Read and Write
 
-## [terraform-version-updater.yml](.github/workflows/terraform-version-updater.yml)
+## [terraform-version-updater](.github/workflows/terraform-version-updater.yml)
 Upgrade Terraform to latest version
 
 e.g.
