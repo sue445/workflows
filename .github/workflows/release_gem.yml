@@ -29,6 +29,8 @@ on:
 
 jobs:
   release:
+    name: Publish gem to rubygems.org
+
     if: github.repository == inputs.repo_name
     runs-on: ubuntu-latest
 
