@@ -161,6 +161,28 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Contents : Read and write
 * Pull requests : Read and write
 
+## [release_gem](.github/workflows/release_gem.yml)
+Publish gem and create release
+
+e.g.
+
+```yml
+name: Publish gem to rubygems.org
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    uses: sue445/workflows/.github/workflows/release_gem.yml@main
+    with:
+      repo_name: sue445/repo_name
+      gem_name:  gem_name
+      # checkout: true
+    secrets:
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
+```
+
 ## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
 Auto-merge Dependabot PR when there are no plan changes
 
