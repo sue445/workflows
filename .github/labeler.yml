@@ -18,6 +18,10 @@ rbs-collection-updater:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/rbs-collection-updater.yml"
 
+release_gem:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/release_gem.yml"
+
 terraform-auto-merge:
   - changed-files:
       - any-glob-to-any-file: ".github/actions/terraform-auto-merge/**"
