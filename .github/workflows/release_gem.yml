@@ -17,11 +17,6 @@ on:
         required: false
         default: true
 
-    secrets:
-      gh_token:
-        description: github token
-        required: true
-
     outputs:
       tag_name:
         description: gem version tag (e.g. v1.2.3)
@@ -33,6 +28,10 @@ jobs:
 
     if: github.repository == inputs.repo_name
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
 
     outputs:
       tag_name: ${{ steps.create_release.outputs.tag_name }}
@@ -73,4 +72,4 @@ jobs:
 
           gh release create "${tag_name}" --verify-tag --generate-notes "${options[@]}"
         env:
-          GITHUB_TOKEN: ${{ secrets.gh_token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
