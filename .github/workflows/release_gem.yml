@@ -64,11 +64,11 @@ jobs:
           tag_name="$(git describe --tags --abbrev=0)"
           echo "tag_name=${tag_name}" >> "$GITHUB_OUTPUT"
 
-          options=""
+          options=()
           if ! [[ "${tag_name}" =~ ^v[0-9.]+$ ]]; then
-            options="${options} --prerelease"
+            options+=("--prerelease")
           fi
 
-          gh release create "${tag_name}" --verify-tag --generate-notes $options
+          gh release create "${tag_name}" --verify-tag --generate-notes "${options[@]}"
         env:
           GITHUB_TOKEN: ${{ secrets.gh_token }}
