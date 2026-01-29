@@ -178,7 +178,6 @@ jobs:
     with:
       repo_name: sue445/repo_name
       gem_name:  gem_name
-      # checkout: true
 ```
 
 ## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
