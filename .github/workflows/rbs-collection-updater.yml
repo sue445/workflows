@@ -59,6 +59,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           committer: GitHub <noreply@github.com>
           title: "Update rbs_collection.lock.yaml"
+          body: "Automated changes by [rbs-collection-updater](https://github.com/sue445/workflows/blob/main/.github/workflows/rbs-collection-updater.yml) GitHub action"
           commit-message: "Run `bundle exe rbs collection update`"
           labels: rbs-collection-updater
           branch: rbs-collection-updater
