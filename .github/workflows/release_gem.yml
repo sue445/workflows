@@ -30,9 +30,9 @@ jobs:
     outputs:
       tag_name: ${{ steps.create_release.outputs.tag_name }}
 
-    # environment:
-    #   name: rubygems.org
-    #   url: https://rubygems.org/gems/${{ inputs.gem_name }}}
+    environment:
+      name: rubygems.org
+      url: https://rubygems.org/gems/${{ inputs.gem_name }}}
 
     steps:
       # - name: Harden Runner
