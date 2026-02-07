@@ -161,7 +161,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Contents : Read and write
 * Pull requests : Read and write
 
-## [release_gem](.github/workflows/release_gem.yml)
+## [WIP] [release_gem](.github/workflows/release_gem.yml)
 Publish gem and create release
 
 e.g.
