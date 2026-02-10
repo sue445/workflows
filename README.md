@@ -39,6 +39,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Pull requests : Read and write
 
 ## [dependabot-security-alert](.github/workflows/dependabot-security-alert.yml)
+* Create `security` label if it doesn't exist
 * Add `security` label to PR when security update PR
 * Add GHSA-ID (or CVE-ID if possible) to PR title when security update PR
 
@@ -67,6 +68,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 
 * Contents : Read and write
 * Pull requests : Read and write
+* Issues : Read and write
 * Dependabot alerts : Read-only
 
 ## [major-tag-updater](.github/workflows/major-tag-updater.yml)
