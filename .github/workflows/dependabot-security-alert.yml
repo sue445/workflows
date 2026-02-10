@@ -45,6 +45,8 @@ jobs:
             gh label create "security" --color "ffc107" --description "Security related issues or PRs"
             echo "[INFO] Created security label"
           fi
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Add security label and GHSA-ID (or CVE-ID if possible) to PR
         if: steps.metadata.outputs.ghsa-id != ''
