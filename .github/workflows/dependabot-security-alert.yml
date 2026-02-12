@@ -40,6 +40,7 @@ jobs:
           alert-lookup: true
 
       - name: Create `security` label if it doesn't exist
+        if: steps.metadata.outputs.ghsa-id != ''
         run: |
           if ! gh label list --json name --jq '.[].name' | grep -qx "security"; then
             gh label create "security" --color "ffc107" --description "Security related issues or PRs"
@@ -47,7 +48,6 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          GHSA_ID: ${{ steps.metadata.outputs.ghsa-id }}
 
       - name: Add security label and GHSA-ID (or CVE-ID if possible) to PR
         if: steps.metadata.outputs.ghsa-id != ''
