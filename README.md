@@ -26,7 +26,7 @@ on:
 jobs:
   dependabot-auto-merge:
     uses: sue445/workflows/.github/workflows/dependabot-auto-merge.yml@main
-    inputs:
+    with:
       repo-name: sue445/repo-name
     secrets:
       # TODO: Set secrets to Dependabot secrets
@@ -59,7 +59,7 @@ on:
 jobs:
   dependabot-security-alert:
     uses: sue445/workflows/.github/workflows/dependabot-security-alert.yml@main
-    inputs:
+    with:
       repo-name: sue445/repo-name
     secrets:
       # TODO: Set secrets to Dependabot secrets
