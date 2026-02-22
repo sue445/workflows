@@ -182,8 +182,8 @@ jobs:
   release:
     uses: sue445/workflows/.github/workflows/release_gem.yml@main
     with:
-      repo-name: sue445/repo_name
-      gem-name:  gem_name
+      repo-name: sue445/repo-name
+      gem-name:  gem-name
 ```
 
 ## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
