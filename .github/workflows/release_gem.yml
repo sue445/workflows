@@ -1,12 +1,12 @@
 on:
   workflow_call:
     inputs:
-      repo_name:
+      repo-name:
         description: repo name (e.g. user/repo)
         type: string
         required: true
 
-      gem_name:
+      gem-name:
         description: gem name
         type: string
         required: true
@@ -24,7 +24,7 @@ jobs:
   release:
     name: Publish gem to rubygems.org
 
-    if: github.repository == inputs.repo_name
+    if: github.repository == inputs.repo-name
     runs-on: ubuntu-latest
 
     # permissions:
@@ -36,7 +36,7 @@ jobs:
 
     # environment:
     #   name: rubygems.org
-    #   url: https://rubygems.org/gems/${{ inputs.gem_name }}}
+    #   url: https://rubygems.org/gems/${{ inputs.gem-name }}}
 
     steps:
       # - name: Harden Runner
