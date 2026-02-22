@@ -24,7 +24,7 @@ on:
       - synchronize # PR branch is rebased
 
 jobs:
-  auto-merge:
+  dependabot-auto-merge:
     uses: sue445/workflows/.github/workflows/dependabot-auto-merge.yml@main
     secrets:
       # TODO: Set secrets to Dependabot secrets
@@ -55,7 +55,7 @@ on:
       - synchronize # PR branch is rebased
 
 jobs:
-  auto-merge:
+  dependabot-security-alert:
     uses: sue445/workflows/.github/workflows/dependabot-security-alert.yml@main
     secrets:
       # TODO: Set secrets to Dependabot secrets
