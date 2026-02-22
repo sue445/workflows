@@ -1,7 +1,7 @@
 on:
   workflow_call:
     inputs:
-      repo_name:
+      repo-name:
         description: repo name (e.g. user/repo)
         type: string
         required: true
@@ -23,7 +23,7 @@ jobs:
 
     runs-on: ubuntu-slim
 
-    if: github.actor == 'dependabot[bot]' && github.repository == inputs.repo_name
+    if: github.actor == 'dependabot[bot]' && github.repository == inputs.repo-name
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

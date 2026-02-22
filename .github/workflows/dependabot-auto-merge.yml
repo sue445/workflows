@@ -4,7 +4,7 @@
 on:
   workflow_call:
     inputs:
-      repo_name:
+      repo-name:
         description: repo name (e.g. user/repo)
         type: string
         required: true
@@ -26,7 +26,7 @@ jobs:
 
     runs-on: ubuntu-slim
 
-    if: github.actor == 'dependabot[bot]' && github.repository == inputs.repo_name
+    if: github.actor == 'dependabot[bot]' && github.repository == inputs.repo-name
     timeout-minutes: 13
 
     steps:
