@@ -26,6 +26,8 @@ on:
 jobs:
   dependabot-auto-merge:
     uses: sue445/workflows/.github/workflows/dependabot-auto-merge.yml@main
+    inputs:
+      repo_name: sue445/repo_name
     secrets:
       # TODO: Set secrets to Dependabot secrets
       app-id: ${{ secrets.GH_APP_ID }}
@@ -57,6 +59,8 @@ on:
 jobs:
   dependabot-security-alert:
     uses: sue445/workflows/.github/workflows/dependabot-security-alert.yml@main
+    inputs:
+      repo_name: sue445/repo_name
     secrets:
       # TODO: Set secrets to Dependabot secrets
       app-id: ${{ secrets.GH_APP_ID }}
