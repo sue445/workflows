@@ -50,6 +50,15 @@ runs:
         PR_URL: ${{ github.event.pull_request.html_url }}
         GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
+    - name: Auto-merge renovate PR when there are no plan changes
+      run: |
+        gh pr merge --auto --merge "$PR_URL"
+      if: github.event_name == 'pull_request' && steps.plan-changes.outputs.total == '0' && github.actor == 'renovate[bot]'
+      shell: bash
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
     - name: Auto-merge bot PR when there are no plan changes
       run: |
         gh pr merge --auto --merge "$PR_URL"
