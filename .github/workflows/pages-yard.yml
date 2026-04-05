@@ -72,7 +72,7 @@ jobs:
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
 
       - name: Slack Notification (not success)
-        uses: act10ns/slack@cfcc30955fe9377f4f55e1079e5419ee1014269f # v2
+        uses: act10ns/slack@d96404edccc6d6467fc7f8134a420c851b1e9054 # v2.2.0
         if: "! success()"
         continue-on-error: true
         with:
