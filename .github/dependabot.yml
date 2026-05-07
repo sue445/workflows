@@ -21,7 +21,7 @@ updates:
         - sue445/terraform-plan-changes-count
 
   - package-ecosystem: github-actions
-    directory: /.github/actions/*
+    directory: /.github/actions/terraform-auto-merge
     schedule:
       interval: monthly
       time: "05:00"
