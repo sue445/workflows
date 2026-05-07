@@ -19,3 +19,16 @@ updates:
       exclude:
         - ruby/setup-ruby
         - sue445/terraform-plan-changes-count
+
+  - package-ecosystem: github-actions
+    directory: /.github/actions/*
+    schedule:
+      interval: monthly
+      time: "05:00"
+      timezone: Asia/Tokyo
+    assignees:
+      - sue445
+    cooldown:
+      default-days: 7
+      exclude:
+        - sue445/terraform-plan-changes-count
