@@ -66,18 +66,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
-      - name: Approve & enable auto-merge for Dependabot PR (minor version up && go_modules)
-        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'go_modules'
-        run: |
-          gh pr review --approve "$PR_URL"
-          gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-
-      # Updates to ruby/setup-ruby often include the addition of new Ruby versions by bot
-      - name: Approve & enable auto-merge for Dependabot PR (minor version up && github_actions && ruby/setup-ruby)
-        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'github_actions' && contains(steps.metadata.outputs.dependency-names, 'ruby/setup-ruby')
+      - name: Approve & enable auto-merge for Dependabot PR (minor version up && (go_modules || github_actions))
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && (steps.metadata.outputs.package-ecosystem == 'go_modules' || steps.metadata.outputs.package-ecosystem == 'github_actions')
         run: |
           gh pr review --approve "$PR_URL"
           gh pr merge --auto --merge "$PR_URL"
