@@ -51,6 +51,8 @@ jobs:
 
       - name: Publish to RubyGems
         uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
+        with:
+          attestations: false
 
       - name: Create GitHub release
         id: create_release
