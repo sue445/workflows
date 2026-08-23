@@ -187,6 +187,9 @@ jobs:
       # ruby-version: .tool-versions
       # bundle-without: production
       # go-version-file: ext/gem_name/go.mod
+      # before-command: |
+      #   sudo apt-get update
+      #   sudo apt-get install -y libgda-5.0
     permissions:
       contents: write
       id-token: write

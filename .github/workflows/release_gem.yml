@@ -23,6 +23,12 @@ on:
         required: false
         default: ""
 
+      before-command:
+        description: Install command before `bundle install`
+        type: string
+        required: false
+        default: ""
+
       go-version-file:
         description: go version file (c.f. https://github.com/actions/setup-go/blob/main/docs/advanced-usage.md#using-the-go-version-file-input)
         type: string
@@ -63,6 +69,10 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Prepare for bundle install
+        run: ${{ inputs.before-command }}
+        if: inputs.before-command != ''
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
