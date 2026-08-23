@@ -184,6 +184,8 @@ jobs:
     with:
       repo-name: sue445/repo-name
       gem-name:  gem-name
+      # ruby-version: .tool-versions
+      # go-version-file: ext/gem_name/go.mod
     permissions:
       contents: write
       id-token: write
