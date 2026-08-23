@@ -32,7 +32,7 @@ jobs:
 
     environment:
       name: rubygems.org
-      url: https://rubygems.org/gems/${{ inputs.gem-name }}}
+      url: https://rubygems.org/gems/${{ inputs.gem-name }}
 
     steps:
       - name: Harden Runner
