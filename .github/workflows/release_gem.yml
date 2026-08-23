@@ -17,6 +17,12 @@ on:
         required: false
         default: ruby
 
+      go-version-file:
+        description: go version file (c.f. https://github.com/actions/setup-go/blob/main/docs/advanced-usage.md#using-the-go-version-file-input)
+        type: string
+        required: false
+        default: ""
+
     outputs:
       tag_name:
         description: gem version tag (e.g. v1.2.3)
@@ -54,6 +60,11 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: ${{ inputs.ruby-version }}
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: ${{ inputs.go-version-file }}
+        if: inputs.go-version-file != ''
 
       - name: Publish to RubyGems
         uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
