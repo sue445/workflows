@@ -17,6 +17,12 @@ on:
         required: false
         default: ruby
 
+      bundle-without:
+        description: Passed to `BUNDLE_WITHOUT` env (e.g. development:test)
+        type: string
+        required: false
+        default: ""
+
       go-version-file:
         description: go version file (c.f. https://github.com/actions/setup-go/blob/main/docs/advanced-usage.md#using-the-go-version-file-input)
         type: string
@@ -45,6 +51,9 @@ jobs:
     environment:
       name: rubygems.org
       url: https://rubygems.org/gems/${{ inputs.gem-name }}
+
+    env:
+      BUNDLE_WITHOUT: ${{ inputs.bundle-without }}
 
     steps:
       - name: Harden Runner
