@@ -18,7 +18,7 @@ on:
         default: ruby
 
       bundle-without:
-        description: BUNDLE_WITHOUT environment
+        description: Passed to `BUNDLE_WITHOUT` env (e.g. development:test)
         type: string
         required: false
         default: ""
