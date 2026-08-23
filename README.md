@@ -167,7 +167,7 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Contents : Read and write
 * Pull requests : Read and write
 
-## [WIP] [release_gem](.github/workflows/release_gem.yml)
+## [release_gem](.github/workflows/release_gem.yml)
 Publish gem and create release
 
 e.g.
@@ -184,7 +184,21 @@ jobs:
     with:
       repo-name: sue445/repo-name
       gem-name:  gem-name
+    permissions:
+      contents: write
+      id-token: write
 ```
+
+### Trusted Publisher settings
+
+* Repository owner: gem repo owner name
+* Repository name: gem repo name
+* Workflow filename: `release_gem.yml`
+* Environment: `rubygems.org`
+* Workflow Repository Owner: `sue445`
+* Workflow Repository Name: `workflows`
+
+c.f. https://guides.rubygems.org/trusted-publishing/#using-reusable-workflows
 
 ## [terraform-auto-merge](.github/actions/terraform-auto-merge/action.yml)
 Auto-merge Dependabot PR when there are no plan changes
