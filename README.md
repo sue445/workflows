@@ -201,6 +201,8 @@ jobs:
 * Repository name: gem repo name
 * Workflow filename: `release_gem.yml`
 * Environment: `rubygems.org`
+  * **[TODO]** Create `rubygems.org` environment to repository
+  * c.f. https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments
 * Workflow Repository Owner: `sue445`
 * Workflow Repository Name: `workflows`
 
