@@ -46,7 +46,7 @@ jobs:
         with:
           github-token: ${{ steps.app-token.outputs.token }}
 
-      - name: Approve & enable auto-merge for Dependabot PR when patch version up
+      - name: Approve & enable auto-merge for Dependabot PR when updating to a patch version
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: |
           gh pr review --approve "$PR_URL"
@@ -57,7 +57,7 @@ jobs:
 
       # Now, development is only supported for bundler, composer, mix, maven, npm, pip
       # c.f. https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#dependency-type-allow
-      - name: Approve & enable auto-merge for Dependabot PR when minor version up && development dependencies
+      - name: Approve & enable auto-merge for Dependabot PR when updating a development dependency to a minor version
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.dependency-type == 'direct:development'
         run: |
           gh pr review --approve "$PR_URL"
