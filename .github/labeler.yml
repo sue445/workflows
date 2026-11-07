@@ -29,3 +29,7 @@ terraform-auto-merge:
 terraform-version-updater:
   - changed-files:
       - any-glob-to-any-file: ".github/workflows/terraform-version-updater.yml"
+
+verify-actions-lockfile:
+  - changed-files:
+      - any-glob-to-any-file: ".github/workflows/verify-actions-lockfile.yml"
