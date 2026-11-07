@@ -285,6 +285,8 @@ on:
       - ".github/workflows/*.yml"
       - ".github/workflows/actions.lock"
   push:
+    branches:
+      - main
     paths:
       - ".github/workflows/*.yml"
       - ".github/workflows/actions.lock"
