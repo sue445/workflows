@@ -1,0 +1,22 @@
+name: Verify Actions Lockfile
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-slim
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install gh-actions-lock
+        run: gh extension install github/gh-actions-lock
+
+      - name: Verify lockfile
+        run: gh actions-lock --verify
+        env:
+          GH_TOKEN: ${{ github.token }}

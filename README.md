@@ -268,3 +268,30 @@ Permissions required for [GitHub App](https://docs.github.com/en/apps/creating-g
 * Pull requests : Read and write
 
 See also. https://github.com/sue445/terraform-version-updater
+
+## [verify-actions-lockfile](.github/workflows/verify-actions-lockfile.yml)
+Verify the GitHub Actions lockfile with [`gh-actions-lock`](https://github.com/github/gh-actions-lock) by running `gh actions-lock --verify`.
+
+Generate and commit the lockfile with `gh actions-lock` before using this workflow.
+
+e.g.
+
+```yml
+name: Verify Actions Lockfile
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/*.yml"
+      - ".github/workflows/actions.lock"
+  push:
+    paths:
+      - ".github/workflows/*.yml"
+      - ".github/workflows/actions.lock"
+
+jobs:
+  verify:
+    uses: sue445/workflows/.github/workflows/verify-actions-lockfile.yml@main
+```
+
+No inputs or secrets are required. The workflow uses `github.token` for authentication.
